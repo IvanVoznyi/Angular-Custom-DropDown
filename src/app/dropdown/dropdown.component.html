@@ -1,0 +1,28 @@
+<div class="dropdown-container">
+  <div #dropdown [ngClass]="{ open: isShowMenu }" class="dropdown-field">
+    <ng-container
+      *ngIf="selectedItem?.text; then selectedValue; else placeholder"
+    >
+    </ng-container>
+    <div class="arrow">&#x2039;</div>
+  </div>
+  <ng-container *ngIf="showMenu | async">
+    <div #dropdownMenu class="dropdown-menu">
+      <div
+        class="dropdown-menu-item"
+        (click)="onSelectItem(item)"
+        *ngFor="let item of items"
+      >
+        <div>{{ item.text }}</div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #placeholder>
+  <div>Select Item</div>
+</ng-template>
+
+<ng-template #selectedValue>
+  <div>{{ selectedItem?.text }}</div>
+</ng-template>

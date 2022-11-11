@@ -1,0 +1,15 @@
+<app-dropdown
+  [items]="items"
+  [selectedItem]="selectedFirstItem"
+  (selectItem)="selectFirstItem($event)"
+></app-dropdown>
+<div>Some Text</div>
+
+<div style="height: 100%"></div>
+<div>Some Text</div>
+<app-dropdown
+  [items]="items"
+  [selectedItem]="selectedSecondItem"
+  (selectItem)="selectSecondItem($event)"
+>
+</app-dropdown>
