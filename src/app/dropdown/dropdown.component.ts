@@ -67,7 +67,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   showToggle() {
     this.isShowMenu = !this.isShowMenu;
-    this.showMenu.next(this.isShowMenu);
+    this.showMenu.emit(this.isShowMenu);
   }
 
   ngOnInit(): void {

@@ -1,3 +1,4 @@
+<!-- dropdown.component.html -->
 <div class="dropdown-container">
   <div #dropdown [ngClass]="{ open: isShowMenu }" class="dropdown-field">
     <ng-container
@@ -9,6 +10,7 @@
   <ng-container *ngIf="showMenu | async">
     <div #dropdownMenu class="dropdown-menu">
       <div
+        [ngClass]="{'selected': selectedItem && selectedItem.text == item.text}"
         class="dropdown-menu-item"
         (click)="onSelectItem(item)"
         *ngFor="let item of items"
