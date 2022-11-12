@@ -13,6 +13,7 @@ import {
 import {
   filter,
   fromEvent,
+  merge,
   skip,
   Subscription,
   switchMap,
@@ -79,11 +80,17 @@ export class DropdownComponent implements OnInit, OnDestroy {
           }),
           filter(() => this.isShowMenu),
           switchMap(() =>
-            fromEvent(document, 'click').pipe(skip(1), takeUntil(this.showMenu))
+            merge(
+              fromEvent(document, 'click'),
+              fromEvent(document, 'scroll')
+            ).pipe(skip(1), takeUntil(this.showMenu))
           )
         )
         .subscribe((event) => {
-          if (!(event.target as HTMLElement).contains(document)) {
+          if (
+            !(event.target as HTMLElement).contains(document) ||
+            event.type == 'scroll'
+          ) {
             this.showToggle();
           }
         });
